@@ -3,13 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -51,12 +45,6 @@ public class Frame extends javax.swing.JFrame {
 
 	private String path1;
 	private String path2;
-	private String path3;
-	private String tweak = "0123456789ABCDEF";
-
-	public String getTweak() {
-		return tweak;
-	}
 
 	public String getPath1() {
 		return path1;
@@ -66,17 +54,12 @@ public class Frame extends javax.swing.JFrame {
 		return path2;
 	}
 
-	public String getPath3() {
-		return path3;
-	}
-
 	/**
 	 * Creates new form Frame
 	 */
 	public Frame() {
 		path1 = "";
 		path2 = "";
-		path3 = "";
 		initComponents();
 	}
 
@@ -91,13 +74,13 @@ public class Frame extends javax.swing.JFrame {
 
 		jLabel1 = new javax.swing.JLabel();
 		jLabel2 = new javax.swing.JLabel();
-		jLabel3 = new javax.swing.JLabel();
+		//jLabel3 = new javax.swing.JLabel();
 		jTextField1 = new javax.swing.JTextField();
 		jTextField2 = new javax.swing.JTextField();
-		jTextField3 = new javax.swing.JTextField();
+		//jTextField3 = new javax.swing.JTextField();
 		jButton1 = new javax.swing.JButton();
 		jButton2 = new javax.swing.JButton();
-		jButton3 = new javax.swing.JButton();
+		//jButton3 = new javax.swing.JButton();
 		jLabel4 = new javax.swing.JLabel();
 		jLabel5 = new javax.swing.JLabel();
 		jLabel6 = new javax.swing.JLabel();
@@ -111,13 +94,13 @@ public class Frame extends javax.swing.JFrame {
 
 		jLabel2.setText("Open Key");
 
-		jLabel3.setText("Save as");
+		//jLabel3.setText("Save as");
 
 		jTextField1.setText("Plaintext path");
 
 		jTextField2.setText("Key path");
 
-		jTextField3.setText("Cipher path to save");
+		//jTextField3.setText("Cipher path to save");
 
 		jButton1.setText("open");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,12 +117,12 @@ public class Frame extends javax.swing.JFrame {
 			}
 		});
 
-		jButton3.setText("save");
-		jButton3.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton3ActionPerformed(evt);
-			}
-		});
+//		jButton3.setText("save");
+//		jButton3.addActionListener(new java.awt.event.ActionListener() {
+//			public void actionPerformed(java.awt.event.ActionEvent evt) {
+//				jButton3ActionPerformed(evt);
+//			}
+//		});
 
 		jLabel4.setText("AES with CTR mode");
 		jLabel4.setHorizontalAlignment(JLabel.CENTER);
@@ -190,17 +173,15 @@ public class Frame extends javax.swing.JFrame {
 										javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addGroup(layout.createSequentialGroup()
 										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel1).addComponent(jLabel2).addComponent(jLabel3))
+												.addComponent(jLabel1).addComponent(jLabel2))
 										.addGap(18, 18, 18)
 										.addGroup(layout
 												.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-												.addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 192,
-														Short.MAX_VALUE)
 												.addComponent(jTextField2).addComponent(jTextField1))
 										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 												.addComponent(jButton1).addComponent(jButton2)
-												.addComponent(jButton3)))))
+												))))
 						.addGroup(layout.createSequentialGroup().addGap(127, 127, 127).addComponent(jButton4)
 								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(jButton5)))
@@ -220,10 +201,8 @@ public class Frame extends javax.swing.JFrame {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addComponent(jButton2))
 				.addGap(41, 41, 41)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jLabel3)
-						.addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addComponent(jButton3))
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+						)
 				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jButton4)
 						.addComponent(jButton5))
@@ -268,23 +247,23 @@ public class Frame extends javax.swing.JFrame {
 		}
 	}
 
-	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-		JFileChooser fileChooser = new JFileChooser();
-		int returnVal = fileChooser.showSaveDialog(this);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = fileChooser.getSelectedFile();
-			try {
-				// What to do with the file, e.g. display it in a TextArea
-				jTextField3.setText(file.getAbsolutePath());
-				path3 = jTextField3.getText();
-			} catch (Exception ex) {
-				System.out.println("problem accessing file" + file.getAbsolutePath());
-			}
-		} else {
-			System.out.println("File access cancelled by user.");
-		}
-	}
+//	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
+//		// TODO add your handling code here:
+//		JFileChooser fileChooser = new JFileChooser();
+//		int returnVal = fileChooser.showSaveDialog(this);
+//		if (returnVal == JFileChooser.APPROVE_OPTION) {
+//			File file = fileChooser.getSelectedFile();
+//			try {
+//				// What to do with the file, e.g. display it in a TextArea
+//				jTextField3.setText(file.getAbsolutePath());
+//				path3 = jTextField3.getText();
+//			} catch (Exception ex) {
+//				System.out.println("problem accessing file" + file.getAbsolutePath());
+//			}
+//		} else {
+//			System.out.println("File access cancelled by user.");
+//		}
+//	}
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
 		// TODO add your handling code here:
@@ -298,6 +277,7 @@ public class Frame extends javax.swing.JFrame {
 		 CalculatorSpec spec = new CalculatorSpec();
 		 spec.setInputFile(new File(path1));
          spec.setKeyFile(new File(path2));
+       
          String result = Aes.start(spec);
          System.out.println(result);
 	
@@ -306,7 +286,13 @@ public class Frame extends javax.swing.JFrame {
 	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) throws Exception {
 		// TODO add your handling code here:
 		// decryption
-
+		
+		CalculatorSpec spec = new CalculatorSpec();
+		spec.setInputFile(new File(path1));
+        spec.setKeyFile(new File(path2));
+      
+        String result = Aes.startD(spec);
+        System.out.println(result);
 
 		
 	}

@@ -27,11 +27,28 @@ class Aes {
 		byte[] keyBytes = StringUtil.hexStringToByteArray(keyHex);
 		byte[] input = Files.readAllBytes(inputPath);
 		
-		if(spec.getType().equals(Type.ENCRYPT)){
+		//if(spec.getType().equals(Type.ENCRYPT)){
 			return encrypt(spec.getInputFile().getName(), input, keyBytes);
-		} else{
+		//} else{
+			//return decrypt(input, keyBytes);
+		//}
+				
+		//return null;
+	}
+	
+	static String startD(CalculatorSpec spec) throws Exception{
+		Path inputPath = Paths.get(spec.getInputFile().getAbsolutePath());
+		Path keyPath = Paths.get(spec.getKeyFile().getAbsolutePath());
+		
+		String keyHex = Files.readAllLines(keyPath).get(0);
+		byte[] keyBytes = StringUtil.hexStringToByteArray(keyHex);
+		byte[] input = Files.readAllBytes(inputPath);
+		
+		//if(spec.getType().equals(Type.ENCRYPT)){
+		//	return encrypt(spec.getInputFile().getName(), input, keyBytes);
+		//} else{
 			return decrypt(input, keyBytes);
-		}
+		//}
 				
 		//return null;
 	}
